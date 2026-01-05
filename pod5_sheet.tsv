@@ -1,0 +1,6 @@
+sample_id	path
+control_rep1	/data/nanopore/pod5/control_replicate1
+control_rep2	/data/nanopore/pod5/control_replicate2
+lupus_rep1	/data/nanopore/pod5/lupus_replicate1
+lupus_rep2	/data/nanopore/pod5/lupus_replicate2
+lupus_rep3	/data/nanopore/pod5/lupus_replicate3
