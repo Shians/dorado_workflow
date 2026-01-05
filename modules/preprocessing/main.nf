@@ -1,5 +1,5 @@
 process mergeBams {
-    container 'ghcr.io/shians/lupus-workflow-container:main'
+    container 'oras://ghcr.io/shians/lupus-workflow-container:latest-singularity'
 
     publishDir "${params.output_dir}/basecalled/",
         mode: 'copy',
@@ -24,7 +24,7 @@ process mergeBams {
 }
 
 process bamToFastq {
-    container 'ghcr.io/shians/lupus-workflow-container:main'
+    container 'oras://ghcr.io/shians/lupus-workflow-container:latest-singularity'
 
     publishDir "${params.output_dir}/fastq/",
         mode: 'copy',

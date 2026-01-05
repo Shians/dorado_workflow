@@ -1,5 +1,5 @@
 process buildMinimapIndexGenome {
-    container 'ghcr.io/shians/lupus-workflow-container:main'
+    container 'oras://ghcr.io/shians/lupus-workflow-container:latest-singularity'
 
     cpus 8
     memory '64.GB'
