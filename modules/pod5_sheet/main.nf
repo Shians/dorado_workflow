@@ -113,7 +113,7 @@ def createChannelFromPod5Sheet(pod5SheetPath) {
         log.info "    ${sample}: ${count} POD5 files"
     }
 
-    return Channel.fromList(
+    return channel.fromList(
         pod5FilesList.collect { row ->
             tuple(row.sample_id, file(row.pod5_file))
         }

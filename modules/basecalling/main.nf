@@ -25,7 +25,7 @@ process doradoBaseCall {
     executor 'slurm'
     cpus 24
     memory '128.GB'
-    time '2h'
+    time '4h'
     queue 'gpuq'
     clusterOptions '--gres=gpu:A30:1'
     array 100
@@ -42,14 +42,13 @@ process doradoBaseCall {
 
     script:
     bam_folder = "dorado_output/${sample_id}"
-    model_name = model.name
     """
     mkdir -p ${bam_folder}
     dorado basecaller \
         --reference ${ref_genome} \
         --models-directory ${model} \
         --output-dir ${bam_folder} \
-        ${model_name} \
+        ${basecall_model} \
         ${pod5_file}
     """
 }

@@ -85,7 +85,7 @@ workflow {
     model_path = doradoDownloadModel(params.basecall_model)
 
     // Get reference genome path
-    ref_genome_path = Channel.fromPath(params.reference_genome)
+    ref_genome_path = channel.fromPath(params.reference_genome)
 
     // Build minimap2 index for genome (optional, for alignment during basecalling)
     ref_genome_index = buildMinimapIndexGenome(ref_genome_path)
@@ -97,10 +97,10 @@ workflow {
     basecall_model_ch = channel.value(params.basecall_model)
 
     // Combine POD5 files with model, reference genome, and basecall model for basecalling
-        .combine(basecall_model_ch)
     pod5_files = pod5_channel
         .combine(model_path)
         .combine(ref_genome_path)
+        .combine(basecall_model_ch)
 
     // Basecall POD5 files
     basecalled_bams = doradoBaseCall(pod5_files)
