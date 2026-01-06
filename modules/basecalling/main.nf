@@ -42,13 +42,13 @@ process doradoBaseCall {
 
     script:
     bam_folder = "dorado_output/${sample_id}"
+    model_dir = "${model}/${basecall_model}"
     """
     mkdir -p ${bam_folder}
     dorado basecaller \
         --reference ${ref_genome} \
-        --models-directory ${model} \
         --output-dir ${bam_folder} \
-        ${basecall_model} \
+        ${model_dir} \
         ${pod5_file}
     """
 }
