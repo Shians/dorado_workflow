@@ -93,7 +93,11 @@ workflow {
     // Parse POD5 sheet and create channel
     pod5_channel = createChannelFromPod5Sheet(params.pod5_sheet)
 
-    // Combine POD5 files with model and reference genome for basecalling
+    // Create a channel for the basecall model name
+    basecall_model_ch = channel.value(params.basecall_model)
+
+    // Combine POD5 files with model, reference genome, and basecall model for basecalling
+        .combine(basecall_model_ch)
     pod5_files = pod5_channel
         .combine(model_path)
         .combine(ref_genome_path)

@@ -35,7 +35,7 @@ process doradoBaseCall {
     maxRetries 3
 
     input:
-    tuple val(sample_id), path(pod5_file), path(model), path(ref_genome)
+    tuple val(sample_id), path(pod5_file), path(model), path(ref_genome), val(basecall_model)
 
     output:
     tuple val(sample_id), path("${bam_folder}/*.bam")
