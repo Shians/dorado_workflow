@@ -38,7 +38,7 @@ process doradoBaseCall {
     tuple val(sample_id), path(pod5_file), path(model), path(ref_genome), val(basecall_model)
 
     output:
-    tuple val(sample_id), path("${bam_folder}/*.bam")
+    tuple val(sample_id), path("${bam_folder}/**/*.bam")
 
     script:
     bam_folder = "dorado_output/${sample_id}"
