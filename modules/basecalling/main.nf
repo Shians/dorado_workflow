@@ -1,5 +1,5 @@
 process doradoDownloadModel {
-    container 'oras://ghcr.io/shians/dorado-container:latest-singularity'
+    container 'oras://ghcr.io/shians/dorado-container:1.1.1-singularity'
 
     cpus 4
     memory '8.GB'
@@ -20,7 +20,7 @@ process doradoDownloadModel {
 }
 
 process doradoBaseCall {
-    container 'oras://ghcr.io/shians/dorado-container:latest-singularity'
+    container 'oras://ghcr.io/shians/dorado-container:1.1.1-singularity'
 
     executor 'slurm'
     cpus 24
