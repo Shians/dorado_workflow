@@ -57,8 +57,13 @@ def parsePod5Sheet(pod5SheetPath) {
                 } else if (!pod5Dir.isDirectory()) {
                     errors << "ERROR: Line ${lineNumber}: POD5 path is not a directory: ${row.path}"
                 } else {
-                    // Find all .pod5 files in the directory
-                    def pod5Files = pod5Dir.listFiles().findAll { it.name.endsWith('.pod5') }
+                    // Find all .pod5 files recursively in the directory
+                    def pod5Files = []
+                    pod5Dir.eachFileRecurse { file ->
+                        if (file.isFile() && file.name.endsWith('.pod5')) {
+                            pod5Files << file
+                        }
+                    }
                     if (pod5Files.isEmpty()) {
                         errors << "ERROR: Line ${lineNumber}: No POD5 files found in directory: ${row.path}"
                     }
@@ -95,7 +100,12 @@ def createChannelFromPod5Sheet(pod5SheetPath) {
     def pod5FilesList = []
     pod5Sheet.each { row ->
         def pod5Dir = file(row.path)
-        def pod5Files = pod5Dir.listFiles().findAll { it.name.endsWith('.pod5') }
+        def pod5Files = []
+        pod5Dir.eachFileRecurse { f ->
+            if (f.isFile() && f.name.endsWith('.pod5')) {
+                pod5Files << f
+            }
+        }
         pod5Files.each { pod5File ->
             pod5FilesList << [sample_id: row.sample_id, pod5_file: pod5File]
         }
