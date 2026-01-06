@@ -12,7 +12,7 @@ process doradoDownloadModel {
     path(model_path)
 
     script:
-    model_path = "dorado_models/${model_name}"
+    model_path = "dorado_models/"
     """
     mkdir -p ${model_path}
     dorado download --model ${model_name} --models-directory ${model_path}
