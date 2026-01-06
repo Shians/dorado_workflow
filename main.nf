@@ -112,7 +112,4 @@ workflow {
             tuple(sample, paths.flatten())
         }
         | mergeBams
-
-    // Convert merged BAMs to FASTQ
-    bamToFastq(merged_bams)
 }
