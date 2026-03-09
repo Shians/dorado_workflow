@@ -40,8 +40,8 @@ process doradoBaseCall {
         --reference ${ref_genome} \
         --mm2-opts "-x ${mm2_preset}" \
         --models-directory ${model} \
-        --output-dir ${bam_folder} \
         ${mod_bases_arg} \
+        --output-dir ${bam_folder} \
         ${model_shorthand} \
         ${pod5_file}
     """
