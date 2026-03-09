@@ -1,9 +1,6 @@
 process buildMinimapIndexGenome {
     container 'oras://ghcr.io/shians/lupus-workflow-container:latest-singularity'
-
-    cpus 8
-    memory '64.GB'
-    time '12h'
+    label 'medium'
 
     input:
     path(ref_genome)

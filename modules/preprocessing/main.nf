@@ -5,9 +5,7 @@ process mergeBams {
         mode: 'copy',
         enabled: params.publish_merged_bams
 
-    cpus 8
-    memory '32.GB'
-    time '12h'
+    label 'medium'
     tag "${sample_id}"
 
     input:
@@ -31,9 +29,7 @@ process bamToFastq {
         pattern: '*.fastq.gz',
         enabled: params.publish_fastq
 
-    cpus 4
-    memory '16.GB'
-    time '12h'
+    label 'small'
     array 100
     tag "${sample_id}"
 

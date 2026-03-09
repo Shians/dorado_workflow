@@ -1,9 +1,6 @@
 process doradoDownloadModel {
     container 'oras://ghcr.io/shians/dorado-container:1.1.1-singularity'
-
-    cpus 4
-    memory '8.GB'
-    time '1h'
+    label 'small'
 
     input:
     val(model_name)
@@ -21,11 +18,9 @@ process doradoDownloadModel {
 
 process doradoBaseCall {
     container 'oras://ghcr.io/shians/dorado-container:1.1.1-singularity'
+    label 'large'
 
     executor 'slurm'
-    cpus 24
-    memory '128.GB'
-    time '4h'
     queue 'gpuq'
     clusterOptions '--gres=gpu:A30:1'
     array 100
