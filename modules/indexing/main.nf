@@ -3,6 +3,7 @@ process buildMinimapIndexGenome {
 
     input:
     path(ref_genome)
+    val(preset)
 
     output:
     path(index_mmi)
@@ -10,6 +11,6 @@ process buildMinimapIndexGenome {
     script:
     index_mmi = "${ref_genome}.mmi"
     """
-    minimap2 -x splice:hq -d ${index_mmi} ${ref_genome}
+    minimap2 -x ${preset} -d ${index_mmi} ${ref_genome}
     """
 }

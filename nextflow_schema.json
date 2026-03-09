@@ -26,6 +26,18 @@
                     "type": "string",
                     "description": "Dorado basecalling model name (e.g. dna_r10.4.1_e8.2_400bps_sup@v5.0.0).",
                     "fa_icon": "fas fa-brain"
+                },
+                "dna": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "DNA sequencing mode — use map-ont minimap2 preset. Mutually exclusive with --rna.",
+                    "fa_icon": "fas fa-dna"
+                },
+                "rna": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "RNA sequencing mode — use splice:hq minimap2 preset. Mutually exclusive with --dna.",
+                    "fa_icon": "fas fa-flask"
                 }
             },
             "required": ["pod5_sheet", "reference_genome", "basecall_model"]
@@ -58,6 +70,23 @@
     },
     "allOf": [
         { "$ref": "#/defs/input_options" },
-        { "$ref": "#/defs/output_options" }
+        { "$ref": "#/defs/output_options" },
+        {
+            "oneOf": [
+                {
+                    "properties": {
+                        "dna": { "const": true },
+                        "rna": { "const": false }
+                    }
+                },
+                {
+                    "properties": {
+                        "dna": { "const": false },
+                        "rna": { "const": true }
+                    }
+                }
+            ],
+            "errorMessage": "Exactly one of --dna or --rna must be specified"
+        }
     ]
 }

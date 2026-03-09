@@ -13,6 +13,8 @@ workflow {
     validateParameters()
     log.info paramsSummaryLog(workflow)
 
+    minimap2_preset = params.rna ? 'splice:hq' : 'lr:hq'
+
     // Download Dorado model
     model_path = doradoDownloadModel(params.basecall_model)
 
@@ -20,7 +22,7 @@ workflow {
     ref_genome_path = channel.fromPath(params.reference_genome)
 
     // Build minimap2 index for genome (optional, for alignment during basecalling)
-    ref_genome_index = buildMinimapIndexGenome(ref_genome_path)
+    ref_genome_index = buildMinimapIndexGenome(ref_genome_path, channel.value(minimap2_preset))
 
     // Parse POD5 sheet and create channel
     pod5_channel = createChannelFromPod5Sheet(params.pod5_sheet)
