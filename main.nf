@@ -28,10 +28,10 @@ workflow {
     // Create a channel for the basecall model name
     basecall_model_ch = channel.value(params.basecall_model)
 
-    // Combine POD5 files with model, reference genome, and basecall model for basecalling
+    // Combine POD5 files with model, reference genome index, and basecall model for basecalling
     pod5_files = pod5_channel
         .combine(model_path)
-        .combine(ref_genome_path)
+        .combine(ref_genome_index)
         .combine(basecall_model_ch)
 
     // Basecall POD5 files
