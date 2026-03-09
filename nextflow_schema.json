@@ -1,0 +1,63 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/shians/dorado-workflow/main/nextflow_schema.json",
+    "title": "Dorado Workflow Parameters",
+    "description": "Oxford Nanopore basecalling and alignment pipeline",
+    "type": "object",
+    "defs": {
+        "input_options": {
+            "title": "Input Options",
+            "type": "object",
+            "description": "Input POD5 sheet, reference genome, and basecalling model",
+            "properties": {
+                "pod5_sheet": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to TSV file with sample_id and path columns listing POD5 directories per sample.",
+                    "fa_icon": "fas fa-table"
+                },
+                "reference_genome": {
+                    "type": "string",
+                    "format": "file-path",
+                    "description": "Path to reference genome FASTA file for alignment.",
+                    "fa_icon": "fas fa-dna"
+                },
+                "basecall_model": {
+                    "type": "string",
+                    "description": "Dorado basecalling model name (e.g. dna_r10.4.1_e8.2_400bps_sup@v5.0.0).",
+                    "fa_icon": "fas fa-brain"
+                }
+            },
+            "required": ["pod5_sheet", "reference_genome", "basecall_model"]
+        },
+        "output_options": {
+            "title": "Output Options",
+            "type": "object",
+            "description": "Output directory and publishing controls",
+            "properties": {
+                "output_dir": {
+                    "type": "string",
+                    "default": "output",
+                    "description": "Directory for pipeline output files.",
+                    "fa_icon": "fas fa-folder-open"
+                },
+                "publish_merged_bams": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Save merged BAM files after basecalling.",
+                    "fa_icon": "fas fa-save"
+                },
+                "publish_fastq": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Save FASTQ files converted from merged BAMs.",
+                    "fa_icon": "fas fa-save"
+                }
+            }
+        }
+    },
+    "allOf": [
+        { "$ref": "#/defs/input_options" },
+        { "$ref": "#/defs/output_options" }
+    ]
+}

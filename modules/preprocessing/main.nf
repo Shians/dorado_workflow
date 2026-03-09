@@ -3,7 +3,7 @@ process mergeBams {
 
     publishDir "${params.output_dir}/basecalled/",
         mode: 'copy',
-        enabled: params.publish.merged_bams
+        enabled: params.publish_merged_bams
 
     cpus 8
     memory '32.GB'
@@ -29,7 +29,7 @@ process bamToFastq {
     publishDir "${params.output_dir}/fastq/",
         mode: 'copy',
         pattern: '*.fastq.gz',
-        enabled: params.publish.fastq
+        enabled: params.publish_fastq
 
     cpus 4
     memory '16.GB'
