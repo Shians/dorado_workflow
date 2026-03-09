@@ -1,5 +1,4 @@
 process doradoDownloadModel {
-    container 'oras://ghcr.io/shians/dorado-container:1.1.1-singularity'
     label 'small'
 
     input:
@@ -17,7 +16,6 @@ process doradoDownloadModel {
 }
 
 process doradoBaseCall {
-    container 'oras://ghcr.io/shians/dorado-container:1.1.1-singularity'
     label 'large'
 
     executor 'slurm'

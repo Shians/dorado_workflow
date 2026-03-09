@@ -1,5 +1,4 @@
 process buildMinimapIndexGenome {
-    container 'oras://ghcr.io/shians/lupus-workflow-container:latest-singularity'
     label 'medium'
 
     input:
