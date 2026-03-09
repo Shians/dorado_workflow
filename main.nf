@@ -44,4 +44,9 @@ workflow {
             tuple(sample, paths.flatten())
         }
         | mergeBams
+
+    // Convert merged BAMs to FASTQ
+    if (params.publish_fastq) {
+        bamToFastq(merged_bams)
+    }
 }
