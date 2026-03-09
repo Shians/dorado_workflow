@@ -13,7 +13,7 @@ workflow {
     validateParameters()
     log.info paramsSummaryLog(workflow)
 
-    minimap2_preset = params.rna ? 'splice:hq' : 'lr:hq'
+    minimap2_preset = params.cdna ? 'splice:hq' : 'lr:hq'
 
     // Download Dorado model
     model_path = doradoDownloadModel(params.basecall_model)
@@ -30,11 +30,12 @@ workflow {
     // Create a channel for the basecall model name
     basecall_model_ch = channel.value(params.basecall_model)
 
-    // Combine POD5 files with model, reference genome index, and basecall model for basecalling
+    // Combine POD5 files with model, reference genome index, basecall model, and mm2 preset for basecalling
     pod5_files = pod5_channel
         .combine(model_path)
         .combine(ref_genome_index)
         .combine(basecall_model_ch)
+        .combine(channel.value(minimap2_preset))
 
     // Basecall POD5 files
     basecalled_bams = doradoBaseCall(pod5_files)

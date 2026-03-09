@@ -25,7 +25,7 @@ process doradoBaseCall {
     maxRetries 3
 
     input:
-    tuple val(sample_id), path(pod5_file), path(model), path(ref_genome), val(basecall_model)
+    tuple val(sample_id), path(pod5_file), path(model), path(ref_genome), val(basecall_model), val(mm2_preset)
 
     output:
     tuple val(sample_id), path("${bam_folder}/**/*.bam")
@@ -37,6 +37,7 @@ process doradoBaseCall {
     mkdir -p ${bam_folder}
     dorado basecaller \
         --reference ${ref_genome} \
+        --mm2-opts "-x ${mm2_preset}" \
         --output-dir ${bam_folder} \
         ${model_dir} \
         ${pod5_file}
