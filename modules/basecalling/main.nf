@@ -18,9 +18,6 @@ process doradoDownloadModel {
 process doradoBaseCall {
     label 'large'
 
-    executor 'slurm'
-    queue 'gpuq'
-    clusterOptions '--gres=gpu:A30:1'
     array 100
     tag "${sample_id}-${pod5_file.simpleName}"
 
