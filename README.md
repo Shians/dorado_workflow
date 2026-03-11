@@ -11,8 +11,6 @@ This workflow:
 4. Merges per-POD5 BAM files by sample
 5. Converts merged BAMs to compressed FASTQ
 
-**Why a separate workflow?** Basecalling is GPU-intensive and time-consuming. Running it once and reusing the outputs avoids redundant computation across downstream analyses.
-
 ## Requirements
 
 ### Software
