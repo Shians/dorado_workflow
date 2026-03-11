@@ -41,10 +41,10 @@ A tab-separated file mapping sample identifiers to directories containing POD5 f
 
 ```tsv
 sample_id	path
-sample_rep1	/data/nanopore/pod5/sample_replicate1
-sample_rep2	/data/nanopore/pod5/sample_replicate2
-sample_rep3	/data/nanopore/pod5/sample_replicate3_flowcell1
-sample_rep3	/data/nanopore/pod5/sample_replicate3_flowcell2
+control_rep1	/data/nanopore/pod5/control_replicate1
+control_rep2	/data/nanopore/pod5/control_replicate2
+case_rep1	/data/nanopore/pod5/case_replicate1_flowcell1
+case_rep1	/data/nanopore/pod5/case_replicate1_flowcell2
 ```
 
 - `sample_id`: Identifier for each sample (used to name output files). Multiple rows with the same `sample_id` are merged into a single output file, which is useful when one sample was sequenced across multiple flow cells or run folders.
