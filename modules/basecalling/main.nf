@@ -22,7 +22,7 @@ process doradoBaseCall {
     array 100
     tag "${sample_id}-${pod5_file.simpleName}"
 
-    errorStrategy { task.exitStatus in 137..143 ? 'retry' : 'terminate' }
+    errorStrategy { task.exitStatus in (137..143) || task.exitStatus == 271 ? 'retry' : 'terminate' }
     maxRetries 3
 
     input:
@@ -35,6 +35,7 @@ process doradoBaseCall {
     bam_folder = "dorado_output/${sample_id}"
     mod_bases_arg = mod_code ? "--modified-bases \"${mod_code}\"" : ""
     """
+    rm -rf ${bam_folder}
     mkdir -p ${bam_folder}
     dorado basecaller \
         --reference ${ref_genome} \
